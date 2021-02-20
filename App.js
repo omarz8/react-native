@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, Button, Alert, TouchableOpacity } from 'react-native';
 import crown from './assets/crown3.png';
 import * as ImagePicker from 'expo-image-picker';
+import * as Sharing from 'expo-sharing'
 
 export default function App() {
 
@@ -27,16 +28,19 @@ let openImagePickerAsync= async () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress= {openImagePickerAsync}
+      >
       <Image 
-      source={{uri: selectedImage !== null ? selectedImage.localUri : crown}}
-      // source={crown}
+      source={selectedImage !== null ? {uri: selectedImage.localUri} : crown}
       style={styles.image}
        >
       </Image>
+      </TouchableOpacity>
       <Text style={styles.title}> Pick an image!</Text>
       <TouchableOpacity
       style={styles.button}
-        onPress= {openImagePickerAsync}
+      onPress={()=>(console.log('Hello'))}
       >
         <Text style={styles.buttonText}>
           Select
